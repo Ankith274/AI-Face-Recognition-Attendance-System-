@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Register - AI Face Recognition Attendance</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+</head>
+
+<body>
+    <nav class="navbar">
+        <div class="logo">👤 AI Attendance</div>
+        <div class="links">
+            <a href="/">Scanner</a>
+            <a href="/register" class="active">Register Student</a>
+            <a href="/admin">Dashboard</a>
+        </div>
+    </nav>
+
+    <main class="container">
+        <div class="header-section">
+            <h1>Register New Student</h1>
+            <p>Fill out the details below and capture face samples to enroll.</p>
+        </div>
+
+        <div class="register-layout">
+            <div class="form-panel">
+                <form id="register-form">
+                    <div class="input-group">
+                        <label for="student_id">Student ID</label>
+                        <input type="text" id="student_id" required placeholder="e.g. S1024">
+                    </div>
+                    <div class="input-group">
+                        <label for="name">Full Name</label>
+                        <input type="text" id="name" required placeholder="John Doe">
+                    </div>
+                    <button type="submit" class="btn primary" id="start-btn">1. Start Registration</button>
+                </form>
+
+                <div class="capture-section hidden" id="capture-section">
+                    <h3>Face Capture Progress</h3>
+                    <div class="progress-bar">
+                        <div class="progress-fill" id="progress-fill"></div>
+                    </div>
+                    <p id="capture-status">0 / 30 frames captured</p>
+                    <button class="btn info" id="capture-btn">2. Start Scanning Face</button>
+                    <button class="btn success hidden" id="train-btn">3. Train AI Model</button>
+                </div>
+            </div>
+
+            <div class="camera-container smaller">
+                <video id="webcam" autoplay playsinline></video>
+                <div class="scan-overlay hidden" id="register-overlay"></div>
+            </div>
+        </div>
+    </main>
+
+    <script src="{{ url_for('static', filename='script.js') }}"></script>
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            initRegister();
+        });
+    </script>
+</body>
+
+</html>

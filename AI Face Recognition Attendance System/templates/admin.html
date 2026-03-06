@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Dashboard - AI Face Recognition Attendance</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+</head>
+
+<body>
+    <nav class="navbar">
+        <div class="logo">👤 AI Attendance</div>
+        <div class="links">
+            <a href="/">Scanner</a>
+            <a href="/register">Register Student</a>
+            <a href="/admin" class="active">Dashboard</a>
+        </div>
+    </nav>
+
+    <main class="container">
+        <div class="header-section flex-between">
+            <div>
+                <h1>Admin Dashboard</h1>
+                <p>Overview of today's attendance records and registered students.</p>
+            </div>
+            <div class="actions">
+                <button class="btn info" onclick="loadAttendance()">Refresh Data</button>
+                <button class="btn primary" onclick="trainModel()">Retrain Model</button>
+            </div>
+        </div>
+
+        <div class="dashboard-layout">
+            <div class="card">
+                <h2>Today's Attendance</h2>
+                <div class="table-responsive">
+                    <table class="data-table">
+                        <thead>
+                            <tr>
+                                <th>Student ID</th>
+                                <th>Name</th>
+                                <th>Time</th>
+                                <th>Date</th>
+                            </tr>
+                        </thead>
+                        <tbody id="attendance-tbody">
+                            <!-- Populated by JS -->
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+
+            <div class="card">
+                <h2>Registered Students</h2>
+                <div class="table-responsive">
+                    <table class="data-table">
+                        <thead>
+                            <tr>
+                                <th>Student ID</th>
+                                <th>Name</th>
+                                <th>Registered On</th>
+                            </tr>
+                        </thead>
+                        <tbody id="students-tbody">
+                            <!-- Populated by JS -->
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+    </main>
+
+    <script src="{{ url_for('static', filename='script.js') }}"></script>
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            loadAttendance();
+            loadStudents();
+        });
+    </script>
+</body>
+
+</html>
