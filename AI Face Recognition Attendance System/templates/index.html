@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>AI Face Recognition Attendance</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+    <!-- Load Google Fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+</head>
+<body>
+    <nav class="navbar">
+        <div class="logo">👤 AI Attendance</div>
+        <div class="links">
+            <a href="/" class="active">Scanner</a>
+            <a href="/register">Register Student</a>
+            <a href="/admin">Dashboard</a>
+        </div>
+    </nav>
+
+    <main class="container">
+        <div class="header-section">
+            <h1>Daily Attendance Scanner</h1>
+            <p>Please stand in front of the camera to verify your identity.</p>
+        </div>
+
+        <div class="scanner-layout">
+            <div class="camera-container">
+                <video id="webcam" autoplay playsinline></video>
+                <div class="scan-overlay"></div>
+            </div>
+            
+            <div class="status-panel">
+                <div class="status-card">
+                    <h3 id="status-title">System Ready</h3>
+                    <p id="status-text">Position your face inside the frame.</p>
+                </div>
+                <div class="recent-scans">
+                    <h3>Recent Scans</h3>
+                    <ul id="scan-list">
+                        <!-- Populated by JS -->
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </main>
+
+    <script src="{{ url_for('static', filename='script.js') }}"></script>
+    <script>
+        // Init scanner page logic
+        document.addEventListener('DOMContentLoaded', () => {
+            initScanner();
+        });
+    </script>
+</body>
+</html>
